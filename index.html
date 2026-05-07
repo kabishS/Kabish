@@ -109,7 +109,19 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
-
+        .card {
+    background-color: var(--secondary-bg);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--accent-lime); /* Change this line */
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(163, 230, 53, 0.4);
+    border-color: var(--accent-indigo); /* Hover changes to indigo */
+}
         .nav-link {
             color: var(--text-secondary);
             font-weight: 500;

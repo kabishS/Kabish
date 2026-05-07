@@ -10,6 +10,29 @@
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+       /*------------------------------------------------------------------*/
+        /* Add to your <style> block */
+.triangle-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.tri {
+  position: absolute;
+  bottom: -40px;
+  opacity: 0;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+          /*------------------------------------------------------------------*/
         :root {
             --primary-bg: #0F172A; /* Slate 900 */
             --secondary-bg: #1E293B; /* Slate 800 */
@@ -314,6 +337,20 @@
     <!-- Skip to content for accessibility -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:p-3 focus:m-3 focus:bg-lime-400 focus:text-slate-900 focus:rounded-lg">Skip to main content</a>
 
+    <!-- Place right after your <body> tag -->
+<div class="triangle-bg" aria-hidden="true">
+  <svg class="tri" style="left:5%;width:14px;animation-duration:7s;animation-delay:0s"   viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
+  <svg class="tri" style="left:12%;width:10px;animation-duration:9s;animation-delay:1.2s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
+  <svg class="tri" style="left:22%;width:12px;animation-duration:6.5s;animation-delay:0.5s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
+  <svg class="tri" style="left:35%;width:8px;animation-duration:8s;animation-delay:2s"   viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
+  <svg class="tri" style="left:48%;width:14px;animation-duration:7.5s;animation-delay:3.5s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#818CF8"/></svg>
+  <svg class="tri" style="left:58%;width:10px;animation-duration:10s;animation-delay:0.8s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
+  <svg class="tri" style="left:68%;width:8px;animation-duration:6s;animation-delay:1.8s"  viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
+  <svg class="tri" style="left:78%;width:12px;animation-duration:8.5s;animation-delay:2.5s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#84CC16"/></svg>
+  <svg class="tri" style="left:88%;width:9px;animation-duration:7.2s;animation-delay:4s"  viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
+  <svg class="tri" style="left:95%;width:11px;animation-duration:9.5s;animation-delay:1s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
+</div>
+     <!-- Place right after your <body> tag -->
     <!-- Header Navigation -->
     <header class="sticky top-0 z-50 bg-primary-bg bg-opacity-95 backdrop-blur-sm shadow-lg border-b border-border-color">
         <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">

@@ -11,7 +11,7 @@
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-       /*------------------------------------------------------------------*/
+       /*--AI-CHAT----------------------------------------------------------------*/
         /* Add to your <style> block */
 .triangle-bg {
   position: fixed;
@@ -95,7 +95,7 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(163, 230, 53, 0.2);
         }
-
+  /*--AI-CHAT----------------------------------------------------------------*/
 
         .card {
             background-color: var(--secondary-bg);
@@ -344,6 +344,209 @@
             from, to { background-color: transparent }
             50% { background-color: var(--accent-lime); }
         }
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+        #kab-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4F46E5, #A3E635);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(163,230,53,0.35);
+    z-index: 9999;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  #kab-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(163,230,53,0.5); }
+
+  #kab-pulse {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #A3E635;
+    z-index: 9997;
+    animation: kab-pulse 2s infinite;
+    pointer-events: none;
+  }
+  @keyframes kab-pulse {
+    0%   { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+
+  #kab-chat-panel {
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    width: 360px;
+    max-height: 530px;
+    background: #1E293B;
+    border-radius: 20px;
+    border: 1px solid #A3E635;
+    display: flex;
+    flex-direction: column;
+    z-index: 9998;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    transform: scale(0.85) translateY(20px);
+    transform-origin: bottom right;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
+  }
+  #kab-chat-panel.kab-open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .kab-header {
+    background: linear-gradient(135deg, #4F46E5, #A3E635);
+    border-radius: 19px 19px 0 0;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .kab-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(15,23,42,0.35);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .kab-header-info { flex: 1; }
+  .kab-header-name { font-weight: 700; font-size: 14px; color: #0F172A; font-family: 'Space Grotesk', sans-serif; }
+  .kab-header-sub  { font-size: 11px; color: rgba(15,23,42,0.7); }
+  .kab-close {
+    background: none; border: none; cursor: pointer;
+    color: rgba(15,23,42,0.8); font-size: 20px; line-height: 1;
+    transition: color 0.2s; padding: 2px 4px;
+  }
+  .kab-close:hover { color: #0F172A; }
+
+  #kab-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+    min-height: 0;
+  }
+
+  .kab-msg {
+    max-width: 86%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    animation: kab-msgIn 0.25s ease;
+    word-break: break-word;
+    white-space: pre-line;
+  }
+  @keyframes kab-msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .kab-msg.kab-ai {
+    background: #0F172A;
+    color: #E2E8F0;
+    border: 1px solid #334155;
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+  }
+  .kab-msg.kab-user {
+    background: linear-gradient(135deg, #4F46E5, #3730A3);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+    align-self: flex-end;
+  }
+
+  .kab-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #A3E635;
+    margin: 0 2px;
+    animation: kab-bounce 1.2s infinite;
+  }
+  .kab-dot:nth-child(2) { animation-delay: 0.2s; }
+  .kab-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes kab-bounce {
+    0%,60%,100% { transform: translateY(0); }
+    30%          { transform: translateY(-6px); }
+  }
+
+  .kab-chips {
+    padding: 0 16px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .kab-chip {
+    background: #0F172A;
+    border: 1px solid #334155;
+    color: #A3E635;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .kab-chip:hover { border-color: #A3E635; background: rgba(163,230,53,0.1); }
+
+  .kab-input-row {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px 14px;
+    border-top: 1px solid #334155;
+    flex-shrink: 0;
+  }
+  #kab-input {
+    flex: 1;
+    background: #0F172A;
+    border: 1px solid #334155;
+    color: #E2E8F0;
+    padding: 9px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  #kab-input:focus { border-color: #4F46E5; box-shadow: none; }
+  #kab-input::placeholder { color: #64748B; }
+
+  #kab-send {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #4F46E5, #A3E635);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  #kab-send:hover  { opacity: 0.9; }
+  #kab-send:active { transform: scale(0.95); }
+  #kab-send svg { width: 16px; height: 16px; fill: #0F172A; }
+
+  @media (max-width: 420px) {
+    #kab-chat-panel { width: calc(100vw - 32px); right: 16px; }
+    #kab-fab, #kab-pulse { right: 16px; bottom: 20px; }
+  }
     </style>
 </head>
 <body class="scroll-smooth">
@@ -728,6 +931,93 @@
         </div>
     </div>
 </footer>
+        <!--AI-CHAT-------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Pulse ring -->
+<div id="kab-pulse"></div>
+
+<!-- Floating AI Button — AI Brain SVG logo -->
+<button id="kab-fab" aria-label="Chat with Kabish's AI assistant" title="Ask AI about Kabish">
+  <svg width="30" height="30" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Brain outline -->
+    <path d="M32 8C24 8 17 14 16 22C12 23 9 27 9 32C9 37 12 41 16 42C17 50 24 56 32 56C40 56 47 50 48 42C52 41 55 37 55 32C55 27 52 23 48 22C47 14 40 8 32 8Z" fill="#0F172A" stroke="#A3E635" stroke-width="2"/>
+    <!-- Center line -->
+    <line x1="32" y1="10" x2="32" y2="54" stroke="#4F46E5" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <!-- Neural nodes left -->
+    <circle cx="20" cy="24" r="2.5" fill="#A3E635"/>
+    <circle cx="17" cy="32" r="2.5" fill="#4F46E5"/>
+    <circle cx="20" cy="40" r="2.5" fill="#A3E635"/>
+    <!-- Neural nodes right -->
+    <circle cx="44" cy="24" r="2.5" fill="#A3E635"/>
+    <circle cx="47" cy="32" r="2.5" fill="#4F46E5"/>
+    <circle cx="44" cy="40" r="2.5" fill="#A3E635"/>
+    <!-- Center nodes -->
+    <circle cx="32" cy="20" r="2.5" fill="#A3E635"/>
+    <circle cx="32" cy="32" r="3" fill="#4F46E5"/>
+    <circle cx="32" cy="44" r="2.5" fill="#A3E635"/>
+    <!-- Connections left -->
+    <line x1="20" y1="24" x2="32" y2="32" stroke="#A3E635" stroke-width="1" opacity="0.6"/>
+    <line x1="17" y1="32" x2="32" y2="32" stroke="#4F46E5" stroke-width="1" opacity="0.6"/>
+    <line x1="20" y1="40" x2="32" y2="32" stroke="#A3E635" stroke-width="1" opacity="0.6"/>
+    <!-- Connections right -->
+    <line x1="44" y1="24" x2="32" y2="32" stroke="#A3E635" stroke-width="1" opacity="0.6"/>
+    <line x1="47" y1="32" x2="32" y2="32" stroke="#4F46E5" stroke-width="1" opacity="0.6"/>
+    <line x1="44" y1="40" x2="32" y2="32" stroke="#A3E635" stroke-width="1" opacity="0.6"/>
+    <!-- Top/bottom connections -->
+    <line x1="32" y1="20" x2="32" y2="32" stroke="#A3E635" stroke-width="1" opacity="0.6"/>
+    <line x1="32" y1="44" x2="32" y2="32" stroke="#A3E635" stroke-width="1" opacity="0.6"/>
+  </svg>
+</button>
+
+<!-- Chat Panel -->
+<div id="kab-chat-panel" role="dialog" aria-label="AI assistant about Kabish">
+  <div class="kab-header">
+    <div class="kab-avatar">
+      <!-- Mini AI brain in header -->
+      <svg width="22" height="22" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 8C24 8 17 14 16 22C12 23 9 27 9 32C9 37 12 41 16 42C17 50 24 56 32 56C40 56 47 50 48 42C52 41 55 37 55 32C55 27 52 23 48 22C47 14 40 8 32 8Z" fill="rgba(15,23,42,0.5)" stroke="#0F172A" stroke-width="2"/>
+        <circle cx="20" cy="24" r="2.5" fill="#0F172A"/>
+        <circle cx="17" cy="32" r="2.5" fill="#0F172A" opacity="0.7"/>
+        <circle cx="20" cy="40" r="2.5" fill="#0F172A"/>
+        <circle cx="44" cy="24" r="2.5" fill="#0F172A"/>
+        <circle cx="47" cy="32" r="2.5" fill="#0F172A" opacity="0.7"/>
+        <circle cx="44" cy="40" r="2.5" fill="#0F172A"/>
+        <circle cx="32" cy="32" r="3" fill="#0F172A"/>
+        <line x1="20" y1="24" x2="32" y2="32" stroke="#0F172A" stroke-width="1.5" opacity="0.5"/>
+        <line x1="17" y1="32" x2="32" y2="32" stroke="#0F172A" stroke-width="1.5" opacity="0.5"/>
+        <line x1="20" y1="40" x2="32" y2="32" stroke="#0F172A" stroke-width="1.5" opacity="0.5"/>
+        <line x1="44" y1="24" x2="32" y2="32" stroke="#0F172A" stroke-width="1.5" opacity="0.5"/>
+        <line x1="47" y1="32" x2="32" y2="32" stroke="#0F172A" stroke-width="1.5" opacity="0.5"/>
+        <line x1="44" y1="40" x2="32" y2="32" stroke="#0F172A" stroke-width="1.5" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="kab-header-info">
+      <div class="kab-header-name">Kabish's AI Assistant</div>
+      <div class="kab-header-sub">Ask me anything about Kabish ✨</div>
+    </div>
+    <button class="kab-close" id="kab-close" aria-label="Close chat">✕</button>
+  </div>
+
+  <div id="kab-messages">
+    <div class="kab-msg kab-ai">Hey! 👋 I'm Kabish's AI assistant. Ask me about his skills, projects, education, goals, or how to contact him!</div>
+  </div>
+
+  <div class="kab-chips">
+    <button class="kab-chip" onclick="kabAskChip('What are his skills?')">🛠 Skills</button>
+    <button class="kab-chip" onclick="kabAskChip('Show me his projects')">🚀 Projects</button>
+    <button class="kab-chip" onclick="kabAskChip('What is his career goal?')">🎯 Goal</button>
+    <button class="kab-chip" onclick="kabAskChip('Tell me about his education')">🎓 Education</button>
+    <button class="kab-chip" onclick="kabAskChip('How can I contact Kabish?')">📬 Contact</button>
+    <button class="kab-chip" onclick="kabAskChip('Tell me about his experience')">💼 Experience</button>
+  </div>
+
+  <div class="kab-input-row">
+    <input id="kab-input" type="text" placeholder="Ask about Kabish..." maxlength="200" />
+    <button id="kab-send" aria-label="Send message">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+<!--AI-CHAT-------------------------------------------------------------------------------------------------------------------------------------------->
 
 <script>
     // Footer Year
@@ -924,4 +1214,175 @@
                 "text-center text-sm font-medium text-red-500";
         }
     });
+    //--AI-CHAT----------------------------------------------------------------------------------------------------------------------------------------
+    (function () {
+
+  /* ── Full Knowledge Base ── */
+  const KB = [
+    {
+      keys: ['introduce','introduction','yourself','who is','who are','about kabish','tell me about','hi i am','self intro'],
+      reply: "Hi! I'm Kabish S — a 19-year-old B.Tech IT student at V.S.B College, Coimbatore. 👨‍💻\n\nI'm passionate about Full Stack Java Development and currently learning Java, Spring Boot, databases, and React. I've worked on real client projects — portfolio and business websites using HTML, CSS, JavaScript, and Bootstrap.\n\nI'm self-motivated, have good time management skills, and always maintain a positive attitude while learning new technologies!"
+    },
+    {
+      keys: ['personal','age','dob','date of birth','born','phone','email','city','location','coimbatore'],
+      reply: "Here's Kabish's personal info:\n👤 Name: Kabish S\n🎂 Age: 19 (Born: 10 May 2007)\n📍 City: Coimbatore\n📧 Email: kabishvimal@gmail.com\n📞 Phone: 9150617724"
+    },
+    {
+      keys: ['skill','know','tech','language','html','css','javascript','java','python','bootstrap','git','github','n8n','ai tool','ai explorer'],
+      reply: "Kabish's skills:\n🌐 HTML — semantic web pages\n🎨 CSS — responsive layouts\n⚡ JavaScript — interactive frontends\n☕ Java — OOP & problem solving\n🐍 Python — scripting & data\n🅱 Bootstrap — UI frameworks\n🔧 Git — version control\n🐙 GitHub — repo & collaboration\n🔄 n8n — workflow automation\n🤖 AI Tools — prompt engineering & productivity"
+    },
+    {
+      keys: ['project','portfolio','business website','work','built','made'],
+      reply: "Kabish's projects:\n\n🗂 Personal Portfolio Website — showcasing his skills, projects & contact info.\n🏢 Business Website Projects — developed multiple business websites for real clients using HTML, CSS, JavaScript, and Bootstrap.\n\nAll built with clean frontend code and AI-assisted workflows!"
+    },
+    {
+      keys: ['experience','client','real project','freelance','worked on'],
+      reply: "Kabish has real-world experience! 💼\n\nHe has worked on actual client projects, developing portfolio websites and business websites using:\n🔹 HTML, CSS, JavaScript\n🔹 Bootstrap\n🔹 AI Tools\n\nThis hands-on experience sets him apart as a developer who has delivered work beyond just personal projects."
+    },
+    {
+      keys: ['goal','career','future','ambition','dream','full stack','fullstack','spring boot','react','aspir'],
+      reply: "Kabish's career goal: 🎯\n\n\"My goal is to become a Full Stack Java Developer. I'm currently learning Java, Spring Boot, databases, and React. I want to work in a software development role where I can build real-world applications and grow my technical skills.\"\n\nHe's actively working towards this every day! 💪"
+    },
+    {
+      keys: ['educat','study','college','vsb','v.s.b','degree','btech','b.tech','information technology','3rd year','year'],
+      reply: "Kabish's education:\n🏫 College: V.S.B College\n🎓 Degree: B.Tech Information Technology\n📅 Current Year: 3rd Year\n\nHe's building his skills alongside his academics and has already delivered real client projects!"
+    },
+    {
+      keys: ['strength','quality','attitude','self','time management','positive','motivated'],
+      reply: "Kabish's strengths:\n💪 Self-motivated — drives his own learning\n⏰ Time Management — balances academics, projects & learning\n😊 Positive Attitude — approaches challenges with an open mind\n\nThese qualities make him a reliable and enthusiastic team member!"
+    },
+    {
+      keys: ['language','speak','tamil','english','tongue'],
+      reply: "Languages Kabish knows:\n🗣 Tamil — Native\n🌐 English — Professional communication\n\nHe communicates confidently in both!"
+    },
+    {
+      keys: ['location','work location','prefer','available','coimbatore','chennai','bangalore','remote','anywhere','india'],
+      reply: "Kabish is open to work at:\n📍 Coimbatore\n📍 Chennai\n📍 Bangalore\n🌐 Remote\n🇮🇳 Anywhere in India\n\nHe's flexible and ready to relocate for the right opportunity!"
+    },
+    {
+      keys: ['contact','reach','email','message','hire','connect','work together','collaborate'],
+      reply: "Reach Kabish here:\n📧 Email: kabishvimal@gmail.com\n📞 Phone: 9150617724\n💼 LinkedIn: linkedin.com/in/kabish\n🐙 GitHub: github.com/kabishS\n📬 Contact form on this portfolio\n\nHe's open to opportunities, collaborations, and internships!"
+    },
+    {
+      keys: ['linkedin'],
+      reply: "Connect with Kabish professionally 💼\n→ linkedin.com/in/kabish"
+    },
+    {
+      keys: ['github','repo','code','repository'],
+      reply: "Explore Kabish's code on GitHub 🐙\n→ github.com/kabishS"
+    },
+    {
+      keys: ['instagram','insta','social'],
+      reply: "Follow Kabish on Instagram 📸\n→ instagram.com/itz._.kabish"
+    },
+    {
+      keys: ['leetcode','dsa','algorithm','competitive','problem solv'],
+      reply: "Kabish sharpens his problem-solving skills on LeetCode 💻\n→ leetcode.com/u/kabish10/"
+    },
+    {
+      keys: ['resume','cv','download'],
+      reply: "Download Kabish's resume from the hero section of this portfolio — just click 'Download Resume'! 📄"
+    },
+    {
+      keys: ['hire','job','internship','opportunit','junior','developer','open to'],
+      reply: "Yes, Kabish is open to opportunities! 🚀\n\nHe's looking for:\n✅ Internships\n✅ Junior Developer roles\n✅ Freelance / Client projects\n✅ Full Stack / Frontend positions\n\nReach him at kabishvimal@gmail.com or on LinkedIn → linkedin.com/in/kabish"
+    },
+    {
+      keys: ['n8n','workflow','automat'],
+      reply: "Kabish has experience with n8n — an open-source workflow automation tool. 🔄 He uses it to build automated workflows and integrations, showing his interest in going beyond just code!"
+    },
+    {
+      keys: ['hello','hi','hey','hii','helo','greet','sup','good morning','good evening'],
+      reply: "Hello! 👋 Great to meet you! I'm Kabish's AI assistant.\n\nAsk me about his skills, projects, experience, career goals, or how to contact him — I know everything about Kabish! 😊"
+    },
+    {
+      keys: ['thank','thanks','great','awesome','nice','good','cool','wow','perfect','helpful'],
+      reply: "You're welcome! 😊 Glad I could help. Feel free to ask anything else about Kabish — or better yet, reach out to him directly at kabishvimal@gmail.com!"
+    },
+    {
+      keys: ['bye','goodbye','see you','later','ciao','take care'],
+      reply: "Goodbye! 👋 Thanks for checking out Kabish's portfolio. Don't forget to connect with him on LinkedIn or drop a message via the contact form. Have a great day! 🌟"
+    }
+  ];
+
+  const FALLBACKS = [
+    "Hmm, I'm not sure about that! 🤔 Try asking me about Kabish's skills, projects, career goal, or how to reach him.",
+    "That's outside my knowledge! 😅 But I can tell you about his Java skills, client project experience, or education at V.S.B College.",
+    "I only know about Kabish! 😊 Ask about his Full Stack Java goal, his Bootstrap / JavaScript skills, or his contact info.",
+    "Not quite sure! 🤖 Try asking: 'What is his career goal?' or 'Tell me about his experience' — I know all about Kabish!"
+  ];
+
+  let fallbackIdx = 0;
+
+  function getReply(input) {
+    const q = input.toLowerCase().trim();
+    for (const entry of KB) {
+      if (entry.keys.some(k => q.includes(k))) return entry.reply;
+    }
+    return FALLBACKS[fallbackIdx++ % FALLBACKS.length];
+  }
+
+  /* ── DOM ── */
+  const fab      = document.getElementById('kab-fab');
+  const panel    = document.getElementById('kab-chat-panel');
+  const closeBtn = document.getElementById('kab-close');
+  const msgsEl   = document.getElementById('kab-messages');
+  const inp      = document.getElementById('kab-input');
+  const sendBtn  = document.getElementById('kab-send');
+  const pulse    = document.getElementById('kab-pulse');
+
+  let open = false;
+
+  function toggleChat() {
+    open = !open;
+    panel.classList.toggle('kab-open', open);
+    if (open) {
+      pulse.style.display = 'none';
+      setTimeout(() => inp.focus(), 300);
+    }
+  }
+
+  fab.addEventListener('click', toggleChat);
+  closeBtn.addEventListener('click', toggleChat);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) toggleChat(); });
+
+  function addMsg(text, role) {
+    const d = document.createElement('div');
+    d.className = 'kab-msg ' + (role === 'user' ? 'kab-user' : 'kab-ai');
+    d.textContent = text;
+    msgsEl.appendChild(d);
+    msgsEl.scrollTop = msgsEl.scrollHeight;
+  }
+
+  function showTyping() {
+    const d = document.createElement('div');
+    d.className = 'kab-msg kab-ai'; d.id = 'kab-typing';
+    d.innerHTML = '<span class="kab-dot"></span><span class="kab-dot"></span><span class="kab-dot"></span>';
+    msgsEl.appendChild(d);
+    msgsEl.scrollTop = msgsEl.scrollHeight;
+  }
+  function removeTyping() { const t = document.getElementById('kab-typing'); if (t) t.remove(); }
+
+  function kabSend() {
+    const text = inp.value.trim();
+    if (!text) return;
+    inp.value = '';
+    addMsg(text, 'user');
+    showTyping();
+    setTimeout(() => {
+      removeTyping();
+      addMsg(getReply(text), 'ai');
+    }, 500 + Math.random() * 400);
+  }
+
+  function kabAskChip(q) { inp.value = q; kabSend(); }
+  window.kabAskChip = kabAskChip;
+
+  sendBtn.addEventListener('click', kabSend);
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') kabSend(); });
+
+})();
+    //-------------------------------------------------------------------------------------------------------------------------------
+
+    
 </script>

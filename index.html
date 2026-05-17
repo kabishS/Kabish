@@ -8,40 +8,37 @@
     <title>Kabish</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-       /*------------------------------------------------------------------*/
-        /* Add to your <style> block */
-.triangle-bg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-.tri {
-  position: absolute;
-  bottom: -40px;
-  opacity: 0;
-  animation: floatUp linear infinite;
-}
-@keyframes floatUp {
-  0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
-  10%  { opacity: 0.6; }
-  90%  { opacity: 0.3; }
-  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-}
-          /*------------------------------------------------------------------*/
+        .triangle-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .tri {
+            position: absolute;
+            bottom: -40px;
+            opacity: 0;
+            animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
+            10%  { opacity: 0.6; }
+            90%  { opacity: 0.3; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
         :root {
-            --primary-bg: #0F172A; /* Slate 900 */
-            --secondary-bg: #1E293B; /* Slate 800 */
-            --accent-indigo: #4F46E5; /* Indigo 600 */
-            --accent-lime: #A3E635; /* Lime 400 */
-            --text-color: #E2E8F0; /* Slate 200 */
-            --text-secondary: #94A3B8; /* Slate 400 */
-            --border-color: #334155; /* Slate 700 */
+            --primary-bg: #0F172A;
+            --secondary-bg: #1E293B;
+            --accent-indigo: #4F46E5;
+            --accent-lime: #A3E635;
+            --text-color: #E2E8F0;
+            --text-secondary: #94A3B8;
+            --border-color: #334155;
         }
 
         body {
@@ -96,32 +93,20 @@
             box-shadow: 0 4px 15px rgba(163, 230, 53, 0.2);
         }
 
-
         .card {
             background-color: var(--secondary-bg);
-            border-radius: 1.5rem; /* rounded-2xl */
+            border-radius: 1.5rem;
             padding: 2rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--accent-lime);
             transition: all 0.3s ease;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 40px rgba(163, 230, 53, 0.4);
+            border-color: var(--accent-indigo);
         }
-        .card {
-    background-color: var(--secondary-bg);
-    border-radius: 1.5rem;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--accent-lime); /* Change this line */
-    transition: all 0.3s ease;
-}
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(163, 230, 53, 0.4);
-    border-color: var(--accent-indigo); /* Hover changes to indigo */
-}
+
         .nav-link {
             color: var(--text-secondary);
             font-weight: 500;
@@ -143,35 +128,22 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid var(--border-color);
         }
-
         .project-thumbnail:hover {
             transform: scale(1.02);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
-
-        .project-thumbnail img {
-            transition: transform 0.5s ease;
-        }
-
-        .project-thumbnail:hover img {
-            transform: scale(1.05);
-        }
-
+        .project-thumbnail img { transition: transform 0.5s ease; }
+        .project-thumbnail:hover img { transform: scale(1.05); }
         .project-overlay {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
             color: white;
             padding: 1rem;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-
-        .project-thumbnail:hover .project-overlay {
-            opacity: 1;
-        }
+        .project-thumbnail:hover .project-overlay { opacity: 1; }
 
         .tab-button {
             background-color: var(--primary-bg);
@@ -182,9 +154,7 @@
             transition: all 0.3s ease;
             border: 1px solid var(--border-color);
         }
-        .tab-button:hover {
-            background-color: var(--secondary-bg);
-        }
+        .tab-button:hover { background-color: var(--secondary-bg); }
         .tab-button.active {
             background: linear-gradient(to right, var(--accent-indigo), var(--accent-lime));
             color: var(--primary-bg);
@@ -192,13 +162,10 @@
             border-color: transparent;
         }
 
-        /* Project Detail Modal */
         .modal {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             display: flex;
             justify-content: center;
@@ -208,10 +175,7 @@
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-        .modal.open {
-            opacity: 1;
-            visibility: visible;
-        }
+        .modal.open { opacity: 1; visibility: visible; }
         .modal-content {
             background-color: var(--primary-bg);
             border-radius: 1.5rem;
@@ -225,13 +189,10 @@
             transition: transform 0.3s ease;
             border: 1px solid var(--border-color);
         }
-        .modal.open .modal-content {
-            transform: scale(1);
-        }
+        .modal.open .modal-content { transform: scale(1); }
         .modal-close {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 1.5rem; right: 1.5rem;
             background: none;
             border: none;
             font-size: 1.8rem;
@@ -239,11 +200,8 @@
             cursor: pointer;
             transition: color 0.2s ease;
         }
-        .modal-close:hover {
-            color: var(--accent-lime);
-        }
+        .modal-close:hover { color: var(--accent-lime); }
 
-        /* Scroll animations */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -254,24 +212,14 @@
             transform: translateY(0);
         }
 
-        /* Carousel */
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-        }
-        .carousel-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .carousel-item {
-            flex: 0 0 100%; /* Ensure each item takes full width for responsive design */
-            scroll-snap-align: start;
-        }
+        .carousel-container { position: relative; overflow: hidden; }
+        .carousel-wrapper { display: flex; transition: transform 0.5s ease-in-out; }
+        .carousel-item { flex: 0 0 100%; scroll-snap-align: start; }
         .carousel-button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(15, 23, 42, 0.7); /* var(--primary-bg) with opacity */
+            background-color: rgba(15, 23, 42, 0.7);
             color: var(--text-color);
             border: none;
             padding: 0.75rem;
@@ -284,28 +232,17 @@
             z-index: 10;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .carousel-button:hover {
-            background-color: var(--accent-indigo);
-            color: var(--primary-bg);
-        }
+        .carousel-button:hover { background-color: var(--accent-indigo); color: var(--primary-bg); }
         .carousel-button.left { left: 1rem; }
         .carousel-button.right { right: 1rem; }
 
-        /* Social Icons */
         .social-icon {
             color: var(--text-secondary);
             transition: color 0.3s ease, transform 0.3s ease;
         }
-        .social-icon:hover {
-            color: var(--accent-lime);
-            transform: translateY(-3px);
-        }
-        .hero-social-icons .social-icon {
-            font-size: 1.75rem; /* Larger icons for hero section */
-            margin: 0 0.75rem;
-        }
+        .social-icon:hover { color: var(--accent-lime); transform: translateY(-3px); }
+        .hero-social-icons .social-icon { font-size: 1.75rem; margin: 0 0.75rem; }
 
-        /* Form elements */
         input, textarea {
             background-color: var(--secondary-bg);
             border: 1px solid var(--border-color);
@@ -319,58 +256,73 @@
             border-color: var(--accent-indigo);
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
         }
-        label {
-            color: var(--text-secondary);
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
+        label { color: var(--text-secondary); font-weight: 500; margin-bottom: 0.5rem; display: block; }
+        ::placeholder { color: #64748B; }
 
-        ::placeholder {
-            color: #64748B; /* Slate 500 */
-        }
-
-        /* Typing effect cursor */
         .typewriter-cursor {
             display: inline-block;
             width: 2px;
-            height: 1.2em; /* Adjust height to match line height */
+            height: 1.2em;
             background-color: var(--accent-lime);
             margin-left: 0.2rem;
             animation: blink-caret 0.75s step-end infinite;
         }
-
         @keyframes blink-caret {
             from, to { background-color: transparent }
             50% { background-color: var(--accent-lime); }
         }
+
+        /* ── Marquee ── */
+        .marquee-inner {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: scrollLeft 18s linear infinite;
+        }
+        @keyframes scrollLeft {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .skill-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-bg);
+            border: 1px solid var(--accent-lime);
+            border-radius: 9999px;
+            padding: 10px 24px;
+            white-space: nowrap;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .skill-pill:hover {
+            border-color: var(--accent-indigo);
+            box-shadow: 0 0 14px rgba(163, 230, 53, 0.25);
+        }
+        .skill-pill i { color: var(--accent-lime); font-size: 1.3rem; }
+        .skill-pill span { color: var(--text-color); font-weight: 600; font-size: 1rem; }
     </style>
 </head>
 <body class="scroll-smooth">
     <script src="//code.tidio.co/1ecdniecfvgzqolltjbpslhthzzcosn3.js" async></script>
-    <!-- Skip to content for accessibility -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:p-3 focus:m-3 focus:bg-lime-400 focus:text-slate-900 focus:rounded-lg">Skip to main content</a>
 
-    <!-- Place right after your <body> tag -->
-<div class="triangle-bg" aria-hidden="true">
-  <svg class="tri" style="left:5%;width:14px;animation-duration:7s;animation-delay:0s"   viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
-  <svg class="tri" style="left:12%;width:10px;animation-duration:9s;animation-delay:1.2s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
-  <svg class="tri" style="left:22%;width:12px;animation-duration:6.5s;animation-delay:0.5s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
-  <svg class="tri" style="left:35%;width:8px;animation-duration:8s;animation-delay:2s"   viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
-  <svg class="tri" style="left:48%;width:14px;animation-duration:7.5s;animation-delay:3.5s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#818CF8"/></svg>
-  <svg class="tri" style="left:58%;width:10px;animation-duration:10s;animation-delay:0.8s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
-  <svg class="tri" style="left:68%;width:8px;animation-duration:6s;animation-delay:1.8s"  viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
-  <svg class="tri" style="left:78%;width:12px;animation-duration:8.5s;animation-delay:2.5s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#84CC16"/></svg>
-  <svg class="tri" style="left:88%;width:9px;animation-duration:7.2s;animation-delay:4s"  viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
-  <svg class="tri" style="left:95%;width:11px;animation-duration:9.5s;animation-delay:1s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
-</div>
-     <!-- Place right after your <body> tag -->
-    <!-- Header Navigation -->
+    <div class="triangle-bg" aria-hidden="true">
+        <svg class="tri" style="left:5%;width:14px;animation-duration:7s;animation-delay:0s"     viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
+        <svg class="tri" style="left:12%;width:10px;animation-duration:9s;animation-delay:1.2s"  viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
+        <svg class="tri" style="left:22%;width:12px;animation-duration:6.5s;animation-delay:0.5s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
+        <svg class="tri" style="left:35%;width:8px;animation-duration:8s;animation-delay:2s"     viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
+        <svg class="tri" style="left:48%;width:14px;animation-duration:7.5s;animation-delay:3.5s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#818CF8"/></svg>
+        <svg class="tri" style="left:58%;width:10px;animation-duration:10s;animation-delay:0.8s"  viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
+        <svg class="tri" style="left:68%;width:8px;animation-duration:6s;animation-delay:1.8s"   viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
+        <svg class="tri" style="left:78%;width:12px;animation-duration:8.5s;animation-delay:2.5s" viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#84CC16"/></svg>
+        <svg class="tri" style="left:88%;width:9px;animation-duration:7.2s;animation-delay:4s"   viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#4F46E5"/></svg>
+        <svg class="tri" style="left:95%;width:11px;animation-duration:9.5s;animation-delay:1s"  viewBox="0 0 14 12"><polygon points="7,0 14,12 0,12" fill="#A3E635"/></svg>
+    </div>
+
+    <!-- Header -->
     <header class="sticky top-0 z-50 bg-primary-bg bg-opacity-95 backdrop-blur-sm shadow-lg border-b border-border-color">
         <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold gradient-text" aria-label="Home - Creative Portfolio">
-                Kabish
-            </a>
+            <a href="#" class="text-2xl font-bold gradient-text" aria-label="Home - Creative Portfolio">Kabish</a>
             <button id="mobile-menu-button" class="md:hidden text-text-color focus:outline-none focus:ring-2 focus:ring-lime-400 rounded-md p-2" aria-label="Open navigation menu">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
                     <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -379,14 +331,13 @@
                 </svg>
             </button>
             <ul id="main-nav" class="hidden md:flex space-x-8 items-center">
-                <li><a href="#hero" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About Me</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#work" class="nav-link">Projects</a></li>
+                <li><a href="#hero"    class="nav-link">Home</a></li>
+                <li><a href="#about"   class="nav-link">About Me</a></li>
+                <li><a href="#skills"  class="nav-link">Skills</a></li>
+                <li><a href="#work"    class="nav-link">Projects</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
-        <!-- Mobile Menu Overlay -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-primary-bg bg-opacity-95 z-40 hidden md:hidden">
             <div class="flex justify-end p-6">
                 <button id="close-mobile-menu" class="text-text-color focus:outline-none focus:ring-2 focus:ring-lime-400 rounded-md p-2" aria-label="Close navigation menu">
@@ -397,16 +348,17 @@
                 </button>
             </div>
             <ul class="flex flex-col items-center space-y-8 text-2xl font-bold">
-                <li><a href="#hero" class="nav-link" onclick="closeMobileMenu()">Home</a></li>
-                <li><a href="#about" class="nav-link" onclick="closeMobileMenu()">About Me</a></li>
-                <li><a href="#skills" class="nav-link" onclick="closeMobileMenu()">Skills</a></li>
-                <li><a href="#work" class="nav-link" onclick="closeMobileMenu()">Projects</a></li>
+                <li><a href="#hero"    class="nav-link" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="#about"   class="nav-link" onclick="closeMobileMenu()">About Me</a></li>
+                <li><a href="#skills"  class="nav-link" onclick="closeMobileMenu()">Skills</a></li>
+                <li><a href="#work"    class="nav-link" onclick="closeMobileMenu()">Projects</a></li>
                 <li><a href="#contact" class="nav-link" onclick="closeMobileMenu()">Contact</a></li>
             </ul>
         </div>
     </header>
 
     <main id="main-content">
+
         <!-- Hero Section -->
         <section id="hero" class="py-20 md:py-32 bg-gradient-to-r from-primary-bg to-secondary-bg">
             <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
@@ -418,109 +370,113 @@
                         <span id="role-text"></span><span class="typewriter-cursor"></span>
                     </p>
                     <p class="text-lg text-text-secondary mb-8 max-w-lg mx-auto md:mx-0">
-                        I’m a B.Tech IT student passionate about software development. I’m currently learning Java and working on real-world projects to build strong programming and problem-solving skills.
+                        I'm a B.Tech IT student passionate about software development. I'm currently learning Java and working on real-world projects to build strong programming and problem-solving skills.
                     </p>
                     <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-8 hero-social-icons">
-                        <a href="https://github.com/kabishS" target="_blank" aria-label="GitHub Profile" class="social-icon">
-                            <i class="fa-brands fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/kabish-s" target="_blank" aria-label="LinkedIn Profile" class="social-icon">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </a>
-                        <a href="https://www.instagram.com/itz._.kabish" target="_blank" aria-label="Instagram Profile" class="social-icon">
-                            <i class="fa-brands fa-square-instagram"></i>
-                        </a>
-                        <a href="https://leetcode.com/u/kabish10/" target="_blank" aria-label="LeetCode Profile" class="social-icon">
-                            <i class="fa-solid fa-laptop-code"></i>
-                        </a>
+                        <a href="https://github.com/kabishS"              target="_blank" aria-label="GitHub Profile"    class="social-icon"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/kabish-s"    target="_blank" aria-label="LinkedIn Profile"  class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/itz._.kabish"  target="_blank" aria-label="Instagram Profile" class="social-icon"><i class="fa-brands fa-square-instagram"></i></a>
+                        <a href="https://leetcode.com/u/kabish10/"        target="_blank" aria-label="LeetCode Profile"  class="social-icon"><i class="fa-solid fa-laptop-code"></i></a>
                     </div>
                     <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
                         <a href="Kabish_Resume.pdf" download="Kabish_Resume.pdf" class="btn-secondary">Download Resume</a>
                         <a href="#contact" class="btn-primary">Get in Touch</a>
                     </div>
                 </div>
-                <!-- This image is present in the hero section based on your existing code. Reusing it for consistency. -->
                 <div class="md:w-1/2 flex justify-center md:justify-end fade-in">
                     <img src="kabish.png" alt="Kabish Software Developer" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-accent-lime shadow-lg">
                 </div>
             </div>
         </section>
-        <!-- End Hero Section -->
 
         <!-- About Me Section -->
         <section id="about" class="py-16 md:py-24 bg-primary-bg">
             <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/3 flex justify-center fade-in">
-                    <!-- Assuming you have an "about" specific image, otherwise reusing the hero image -->
                     <img src="kabishphoto.png" alt="Kabish - About Me" class="w-64 h-64 md:w-72 md:h-72 rounded-full object-cover border-4 border-accent-indigo shadow-lg">
                 </div>
                 <div class="md:w-2/3 text-center md:text-left fade-in">
                     <h2 class="text-3xl md:text-4xl font-extrabold mb-6 gradient-text">About Me</h2>
-                    <p class="text-lg text-text-secondary mb-4 card-text">
+                    <p class="text-lg text-text-secondary mb-4">
                         Enthusiastic and self-motivated B.Tech Information Technology student with a strong foundation in HTML, CSS, Python, and basic Java.
                     </p>
-                    <p class="text-lg text-text-secondary mb-4 card-text">
+                    <p class="text-lg text-text-secondary mb-4">
                         Experienced in building a personal portfolio website using frontend technologies. Currently exploring AI tools and modern tech stacks.
                     </p>
-                    <p class="text-lg text-text-secondary card-text">
+                    <p class="text-lg text-text-secondary">
                         Eager to contribute and grow in a dynamic software development environment.
                     </p>
                 </div>
             </div>
         </section>
-        <!-- End About Me Section -->
 
         <!-- Skills Section -->
-        <section id="skills" class="py-16 md:py-24 bg-secondary-bg">
+        <section id="skills" class="py-16 md:py-24 bg-secondary-bg overflow-hidden">
             <div class="max-w-7xl mx-auto px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-extrabold mb-6 gradient-text fade-in">My Skills</h2>
                 <p class="text-lg text-text-secondary mb-12 max-w-2xl mx-auto fade-in">
                     I have a strong foundation in frontend and programming languages, with hands-on experience in creating web pages and building small projects. Always eager to learn and adapt to new technologies.
                 </p>
+
+                <!-- Marquee -->
+                <div class="overflow-hidden py-3 mb-16 fade-in">
+                    <div class="marquee-inner">
+                        <div class="skill-pill"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
+                        <div class="skill-pill"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
+                        <div class="skill-pill"><i class="fa-brands fa-java"></i><span>Java</span></div>
+                        <div class="skill-pill"><i class="fa-brands fa-python"></i><span>Python</span></div>
+                        <div class="skill-pill"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+                        <div class="skill-pill"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+                        <div class="skill-pill"><i class="fa-solid fa-microchip"></i><span>AI Explorer</span></div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="skill-pill"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
+                        <div class="skill-pill"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
+                        <div class="skill-pill"><i class="fa-brands fa-java"></i><span>Java</span></div>
+                        <div class="skill-pill"><i class="fa-brands fa-python"></i><span>Python</span></div>
+                        <div class="skill-pill"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+                        <div class="skill-pill"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+                        <div class="skill-pill"><i class="fa-solid fa-microchip"></i><span>AI Explorer</span></div>
+                    </div>
+                </div>
+
+                <!-- Skill Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Skill Card 1: HTML -->
                     <div class="card fade-in delay-100">
                         <h3 class="text-2xl font-bold mb-3 text-accent-lime flex items-center justify-center">
                             <i class="fa-brands fa-html5 mr-2"></i>HTML
                         </h3>
                         <p class="text-md text-text-secondary">Building well-structured and semantic web pages.</p>
                     </div>
-                    <!-- Skill Card 2: CSS -->
                     <div class="card fade-in delay-200">
                         <h3 class="text-2xl font-bold mb-3 text-accent-lime flex items-center justify-center">
                             <i class="fa-brands fa-css3-alt mr-2"></i>CSS
                         </h3>
                         <p class="text-md text-text-secondary">Designing responsive and visually appealing layouts.</p>
                     </div>
-                    <!-- Skill Card 3: Java -->
                     <div class="card fade-in delay-300">
                         <h3 class="text-2xl font-bold mb-3 text-accent-lime flex items-center justify-center">
                             <i class="fa-brands fa-java mr-2"></i>Java
                         </h3>
                         <p class="text-md text-text-secondary">Writing object-oriented programs and problem-solving.</p>
                     </div>
-                    <!-- Skill Card 4: Python -->
                     <div class="card fade-in delay-400">
                         <h3 class="text-2xl font-bold mb-3 text-accent-lime flex items-center justify-center">
                             <i class="fa-brands fa-python mr-2"></i>Python
                         </h3>
                         <p class="text-md text-text-secondary">Developing scripts and exploring data processing.</p>
                     </div>
-                    <!-- Skill Card 5: Git -->
                     <div class="card fade-in delay-500">
                         <h3 class="text-2xl font-bold mb-3 text-accent-lime flex items-center justify-center">
                             <i class="fa-brands fa-git-alt mr-2"></i>Git
                         </h3>
                         <p class="text-md text-text-secondary">Managing version control, tracking changes, and collaborating efficiently on projects.</p>
                     </div>
-                    <!-- Skill Card 6: GitHub -->
                     <div class="card fade-in delay-600">
                         <h3 class="text-2xl font-bold mb-3 text-accent-lime flex items-center justify-center">
                             <i class="fa-brands fa-github mr-2"></i>GitHub
                         </h3>
                         <p class="text-md text-text-secondary">Hosting repositories, managing projects, and collaborating using Git workflows.</p>
                     </div>
-                    <!-- Skill Card 7: AI Explorer -->
                     <div class="card fade-in delay-700">
                         <h3 class="text-2xl font-bold mb-3 text-accent-lime flex items-center justify-center">
                             <i class="fa-solid fa-microchip mr-2"></i>AI Explorer
@@ -528,11 +484,11 @@
                         <p class="text-md text-text-secondary">Exploring AI tools, prompt engineering, and learning how artificial intelligence can improve productivity and development workflows.</p>
                     </div>
                 </div>
+
             </div>
         </section>
-        <!-- End Skills Section -->
 
-       <!-- Projects Section -->
+        <!-- Projects Section -->
         <section id="work" class="py-16 md:py-24 bg-primary-bg">
             <div class="max-w-7xl mx-auto px-6 text-center">
                 <h2 class="text-3xl md:text-4xl font-extrabold mb-6 gradient-text fade-in">My Projects</h2>
@@ -540,403 +496,197 @@
                     Here are some of the projects I've worked on. Each project represents my continuous learning and application of various skills.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project Card 1: Travels Website -->
                     <div class="card fade-in delay-100">
                         <img src="project1.jpg" alt="Travels Website" class="rounded-lg mb-4 object-cover h-48 w-full">
                         <h3 class="text-xl font-bold mb-2 text-text-color">Travels Website</h3>
                         <p class="text-md text-text-secondary mb-4">A responsive website designed for booking travel experiences, built with modern web technologies.</p>
-                         <a href="https://kabishs.github.io/Travel-website-C/" target="_blank" class="inline-flex items-center text-accent-lime hover:text-accent-indigo font-medium group">
+                        <a href="https://kabishs.github.io/Travel-website-C/" target="_blank" class="inline-flex items-center text-accent-lime hover:text-accent-indigo font-medium group">
                             View Project
-                            <svg class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            <svg class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </a>
                     </div>
-                    <!-- Project Card 2: Emoji App -->
                     <div class="card fade-in delay-200">
                         <img src="project2.jpg" alt="Emoji App" class="rounded-lg mb-4 object-cover h-48 w-full">
                         <h3 class="text-xl font-bold mb-2 text-text-color">Emoji App</h3>
                         <p class="text-md text-text-secondary mb-4">A fun and interactive application that allows users to search and discover various emojis.</p>
-                         <a href="https://kabishs.github.io/Emojiapp/" target="_blank" class="inline-flex items-center text-accent-lime hover:text-accent-indigo font-medium group">
+                        <a href="https://kabishs.github.io/Emojiapp/" target="_blank" class="inline-flex items-center text-accent-lime hover:text-accent-indigo font-medium group">
                             View Project
-                            <svg class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            <svg class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </a>
                     </div>
-                    <!-- Project Card 3: OTP Generator -->
                     <div class="card fade-in delay-300">
                         <img src="project3.jpg" alt="OTP Generator" class="rounded-lg mb-4 object-cover h-48 w-full">
                         <h3 class="text-xl font-bold mb-2 text-text-color">OTP Generator</h3>
                         <p class="text-md text-text-secondary mb-4">A simple utility application to generate One-Time Passwords (OTP) for enhanced security.</p>
-                         <a href="https://kabishs.github.io/OTP/" target="_blank" class="inline-flex items-center text-accent-lime hover:text-accent-indigo font-medium group">
+                        <a href="https://kabishs.github.io/OTP/" target="_blank" class="inline-flex items-center text-accent-lime hover:text-accent-indigo font-medium group">
                             View Project
-                            <svg class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            <svg class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- End Projects Section -->
-<!-- Contact Section -->
-<section id="contact" class="py-16 md:py-24 bg-primary-bg">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 gradient-text fade-in">
-            Get in Touch
-        </h2>
 
-        <p class="text-lg text-text-secondary mb-12 max-w-2xl mx-auto fade-in">
-            Have a question or want to work together? Feel free to reach out
-            using the form below, or connect with me on social media.
-        </p>
-
-        <!-- Contact Form -->
-        <form id="contactForm" class="space-y-6 fade-in card p-8 mx-auto max-w-xl">
-
-            <!-- Web3Forms Access Key -->
-            <input
-                type="hidden"
-                name="access_key"
-                value="2aaa8990-bab1-471f-a27c-6f111c12d0f8"
-            >
-
-            <div>
-                <label for="name" class="sr-only">Your Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Your Name"
-                    required
-                    class="w-full"
-                >
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 bg-primary-bg">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-6 gradient-text fade-in">Get in Touch</h2>
+                <p class="text-lg text-text-secondary mb-12 max-w-2xl mx-auto fade-in">
+                    Have a question or want to work together? Feel free to reach out using the form below, or connect with me on social media.
+                </p>
+                <form id="contactForm" class="space-y-6 fade-in card p-8 mx-auto max-w-xl">
+                    <input type="hidden" name="access_key" value="2aaa8990-bab1-471f-a27c-6f111c12d0f8">
+                    <div>
+                        <label for="name" class="sr-only">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required class="w-full">
+                    </div>
+                    <div>
+                        <label for="email" class="sr-only">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required class="w-full">
+                    </div>
+                    <div>
+                        <label for="subject" class="sr-only">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Subject" class="w-full">
+                    </div>
+                    <div>
+                        <label for="message" class="sr-only">Your Message</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Your Message" required class="w-full"></textarea>
+                    </div>
+                    <div id="form-message" class="text-center text-sm font-medium"></div>
+                    <button type="submit" class="btn-primary w-full sm:w-auto">Send Message</button>
+                </form>
+                <div class="flex justify-center space-x-6 mt-12 hero-social-icons">
+                    <a href="https://github.com/kabishS"             target="_blank" aria-label="GitHub Profile"    class="social-icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/kabish-s"   target="_blank" aria-label="LinkedIn Profile"  class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/itz._.kabish" target="_blank" aria-label="Instagram Profile" class="social-icon"><i class="fa-brands fa-square-instagram"></i></a>
+                    <a href="https://leetcode.com/u/kabish10/"       target="_blank" aria-label="LeetCode Profile"  class="social-icon"><i class="fa-solid fa-laptop-code"></i></a>
+                </div>
             </div>
+        </section>
 
-            <div>
-                <label for="email" class="sr-only">Your Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Your Email"
-                    required
-                    class="w-full"
-                >
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-bg text-text-secondary py-8 text-center border-t border-border-color">
+        <div class="max-w-7xl mx-auto px-6">
+            <p>&copy; <span id="current-year"></span> Kabish. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="https://github.com/kabishS"              target="_blank" aria-label="GitHub Profile"    class="social-icon"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/kabish-s"    target="_blank" aria-label="LinkedIn Profile"  class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/itz._.kabish/" target="_blank" aria-label="Instagram Profile" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
             </div>
-
-            <div>
-                <label for="subject" class="sr-only">Subject</label>
-                <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    placeholder="Subject"
-                    class="w-full"
-                >
-            </div>
-
-            <div>
-                <label for="message" class="sr-only">Your Message</label>
-                <textarea
-                    id="message"
-                    name="message"
-                    rows="6"
-                    placeholder="Your Message"
-                    required
-                    class="w-full"
-                ></textarea>
-            </div>
-
-            <div id="form-message" class="text-center text-sm font-medium"></div>
-
-            <button type="submit" class="btn-primary w-full sm:w-auto">
-                Send Message
-            </button>
-        </form>
-
-        <!-- Social Icons -->
-        <div class="flex justify-center space-x-6 mt-12 hero-social-icons">
-            <a
-                href="https://github.com/kabishS"
-                target="_blank"
-                aria-label="GitHub Profile"
-                class="social-icon"
-            >
-                <i class="fa-brands fa-github"></i>
-            </a>
-
-            <a
-                href="https://www.linkedin.com/in/kabish-s"
-                target="_blank"
-                aria-label="LinkedIn Profile"
-                class="social-icon"
-            >
-                <i class="fa-brands fa-linkedin"></i>
-            </a>
-
-            <a
-                href="https://www.instagram.com/itz._.kabish"
-                target="_blank"
-                aria-label="Instagram Profile"
-                class="social-icon"
-            >
-                <i class="fa-brands fa-square-instagram"></i>
-            </a>
-
-            <a
-                href="https://leetcode.com/u/kabish10/"
-                target="_blank"
-                aria-label="LeetCode Profile"
-                class="social-icon"
-            >
-                <i class="fa-solid fa-laptop-code"></i>
-            </a>
         </div>
-    </div>
-</section>
-<!-- End Contact Section -->
+    </footer>
 
+    <script>
+        document.getElementById("current-year").textContent = new Date().getFullYear();
 
-<footer class="bg-primary-bg text-text-secondary py-8 text-center border-t border-border-color">
-    <div class="max-w-7xl mx-auto px-6">
-        <p>
-            &copy; <span id="current-year"></span> Kabish. All rights reserved.
-        </p>
+        const mobileMenuButton    = document.getElementById("mobile-menu-button");
+        const mobileMenuOverlay   = document.getElementById("mobile-menu-overlay");
+        const closeMobileMenuButton = document.getElementById("close-mobile-menu");
 
-        <div class="flex justify-center space-x-6 mt-4">
-            <a
-                href="https://github.com/kabishS"
-                target="_blank"
-                aria-label="GitHub Profile"
-                class="social-icon"
-            >
-                <i class="fa-brands fa-github"></i>
-            </a>
-
-            <a
-                href="https://www.linkedin.com/in/kabish-s"
-                target="_blank"
-                aria-label="LinkedIn Profile"
-                class="social-icon"
-            >
-                <i class="fa-brands fa-linkedin"></i>
-            </a>
-
-           <a
-    href="https://www.instagram.com/itz._.kabish/"
-    target="_blank"
-    aria-label="Instagram Profile"
-    class="social-icon"
->
-    <i class="fa-brands fa-instagram"></i>
-</a>
-        </div>
-    </div>
-</footer>
-
-<script>
-    // Footer Year
-    document.getElementById("current-year").textContent =
-        new Date().getFullYear();
-
-    // Mobile Menu Toggle
-    const mobileMenuButton =
-        document.getElementById("mobile-menu-button");
-
-    const mobileMenuOverlay =
-        document.getElementById("mobile-menu-overlay");
-
-    const closeMobileMenuButton =
-        document.getElementById("close-mobile-menu");
-
-    function toggleMobileMenu() {
-        mobileMenuOverlay.classList.toggle("hidden");
-        document.body.classList.toggle("overflow-hidden");
-    }
-
-    function closeMobileMenu() {
-        mobileMenuOverlay.classList.add("hidden");
-        document.body.classList.remove("overflow-hidden");
-    }
-
-    mobileMenuButton.addEventListener("click", toggleMobileMenu);
-
-    closeMobileMenuButton.addEventListener(
-        "click",
-        closeMobileMenu
-    );
-
-    mobileMenuOverlay.addEventListener("click", (e) => {
-        if (e.target === mobileMenuOverlay) {
-            closeMobileMenu();
+        function toggleMobileMenu() {
+            mobileMenuOverlay.classList.toggle("hidden");
+            document.body.classList.toggle("overflow-hidden");
         }
-    });
+        function closeMobileMenu() {
+            mobileMenuOverlay.classList.add("hidden");
+            document.body.classList.remove("overflow-hidden");
+        }
 
-    // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute("href");
-            const targetElement = document.querySelector(targetId);
-
-            const headerOffset =
-                document.querySelector("header").offsetHeight;
-
-            if (targetElement) {
-                const elementPosition =
-                    targetElement.getBoundingClientRect().top +
-                    window.pageYOffset;
-
-                const offsetPosition =
-                    elementPosition - headerOffset - 20;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-
-            closeMobileMenu();
+        mobileMenuButton.addEventListener("click", toggleMobileMenu);
+        closeMobileMenuButton.addEventListener("click", closeMobileMenu);
+        mobileMenuOverlay.addEventListener("click", (e) => {
+            if (e.target === mobileMenuOverlay) closeMobileMenu();
         });
-    });
 
-    // Fade-in Animation
-    const faders = document.querySelectorAll(".fade-in");
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute("href");
+                const targetElement = document.querySelector(targetId);
+                const headerOffset = document.querySelector("header").offsetHeight;
+                if (targetElement) {
+                    const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerOffset - 20;
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                }
+                closeMobileMenu();
+            });
+        });
 
-    const appearOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const appearOnScroll = new IntersectionObserver(
-        function (entries, observer) {
+        const faders = document.querySelectorAll(".fade-in");
+        const appearOnScroll = new IntersectionObserver(function (entries, observer) {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
-
                 entry.target.classList.add("visible");
                 observer.unobserve(entry.target);
             });
-        },
-        appearOptions
-    );
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-    faders.forEach((fader, index) => {
-        if (fader.parentElement.classList.contains("grid")) {
-            fader.style.transitionDelay = `${index * 50}ms`;
-        }
-
-        appearOnScroll.observe(fader);
-    });
-
-    // Typing Effect
-    const roleTextElement =
-        document.getElementById("role-text");
-
-    const roles = [
-        "Software Engineer",
-        "Frontend Developer",
-        "Backend Engineer"
-    ];
-
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    const typingSpeed = 150;
-
-    function typeWriter() {
-        const currentRole = roles[roleIndex];
-
-        if (isDeleting) {
-            roleTextElement.textContent =
-                currentRole.substring(0, charIndex--);
-        } else {
-            roleTextElement.textContent =
-                currentRole.substring(0, charIndex++);
-        }
-
-        let currentTypingSpeed = typingSpeed;
-
-        if (isDeleting) {
-            currentTypingSpeed /= 2;
-        }
-
-        if (!isDeleting && charIndex === currentRole.length + 1) {
-            currentTypingSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === -1) {
-            isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-            currentTypingSpeed = 500;
-        }
-
-        setTimeout(typeWriter, currentTypingSpeed);
-    }
-
-    document.addEventListener("DOMContentLoaded", typeWriter);
-
-    // =========================
-    // Web3Forms Contact Form
-    // =========================
-
-    const contactForm =
-        document.getElementById("contactForm");
-
-    const formMessage =
-        document.getElementById("form-message");
-
-    contactForm.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        formMessage.textContent = "Sending message...";
-        formMessage.className =
-            "text-center text-sm font-medium text-text-secondary";
-
-        const formData = new FormData(contactForm);
-
-        try {
-            const response = await fetch(
-                "https://api.web3forms.com/submit",
-                {
-                    method: "POST",
-                    body: formData
-                }
-            );
-
-            const result = await response.json();
-
-            if (result.success) {
-                formMessage.textContent =
-                    "Message sent successfully! Thank you for reaching out.";
-
-                formMessage.className =
-                    "text-center text-sm font-medium text-lime-400";
-
-                contactForm.reset();
-            } else {
-                formMessage.textContent =
-                    "Failed to send message. Please try again.";
-
-                formMessage.className =
-                    "text-center text-sm font-medium text-red-500";
+        faders.forEach((fader, index) => {
+            if (fader.parentElement.classList.contains("grid")) {
+                fader.style.transitionDelay = `${index * 50}ms`;
             }
-        } catch (error) {
-            formMessage.textContent =
-                "Something went wrong. Please try again later.";
+            appearOnScroll.observe(fader);
+        });
 
-            formMessage.className =
-                "text-center text-sm font-medium text-red-500";
+        const roleTextElement = document.getElementById("role-text");
+        const roles = ["Software Engineer", "Frontend Developer", "Backend Engineer"];
+        let roleIndex = 0, charIndex = 0, isDeleting = false;
+        const typingSpeed = 150;
+
+        function typeWriter() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                roleTextElement.textContent = currentRole.substring(0, charIndex--);
+            } else {
+                roleTextElement.textContent = currentRole.substring(0, charIndex++);
+            }
+            let currentTypingSpeed = typingSpeed;
+            if (isDeleting) currentTypingSpeed /= 2;
+            if (!isDeleting && charIndex === currentRole.length + 1) {
+                currentTypingSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === -1) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                currentTypingSpeed = 500;
+            }
+            setTimeout(typeWriter, currentTypingSpeed);
         }
-    });
+        document.addEventListener("DOMContentLoaded", typeWriter);
 
+        const contactForm = document.getElementById("contactForm");
+        const formMessage = document.getElementById("form-message");
 
+        contactForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            formMessage.textContent = "Sending message...";
+            formMessage.className = "text-center text-sm font-medium text-text-secondary";
+            const formData = new FormData(contactForm);
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
+                const result = await response.json();
+                if (result.success) {
+                    formMessage.textContent = "Message sent successfully! Thank you for reaching out.";
+                    formMessage.className = "text-center text-sm font-medium text-lime-400";
+                    contactForm.reset();
+                } else {
+                    formMessage.textContent = "Failed to send message. Please try again.";
+                    formMessage.className = "text-center text-sm font-medium text-red-500";
+                }
+            } catch (error) {
+                formMessage.textContent = "Something went wrong. Please try again later.";
+                formMessage.className = "text-center text-sm font-medium text-red-500";
+            }
+        });
 
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-document.onkeydown = function(e) {
-  if (
-    e.key === "F12" ||
-    (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) ||
-    (e.ctrlKey && e.key === 'U')
-  ) {
-    e.preventDefault();
-  }
-};
-</script>
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) || (e.ctrlKey && e.key === 'U')) {
+                e.preventDefault();
+            }
+        };
+    </script>
+</body>
+</html>

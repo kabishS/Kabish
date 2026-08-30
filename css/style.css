@@ -880,28 +880,7 @@ img { max-width: 100%; display: block; }
     padding: 0.35rem 0.9rem;
     border-radius: 9999px;
 }
- 
-/* ── Mobile: collapse to a single left-hand rail ── */
-@media (max-width: 767.98px) {
-    .vtimeline-line { left: 10px; transform: none; }
- 
-    .vtimeline-item,
-    .vtimeline-item.left,
-    .vtimeline-item.right {
-        justify-content: flex-start;
-        padding-left: 2.5rem;
-    }
- 
-    .vtimeline-node { left: 10px; top: 0.4rem; transform: none; }
- 
-    .vtimeline-card { width: 100%; }
- 
-    .vtimeline-item.left .vtimeline-card::before,
-    .vtimeline-item.right .vtimeline-card::before {
-        left: -1.75rem;
-        right: auto;
-    }
-}
+
 /* ── Preloader ── */
 .preloader {
     position: fixed;
@@ -950,10 +929,10 @@ img { max-width: 100%; display: block; }
     height: 9px;
     border-radius: 50%;
 }
-.preloader .orbit span:nth-child(1) { top: 0;    left: 19.5px; background: var(--accent-lime); }
-.preloader .orbit span:nth-child(2) { top: 19.5px; left: 39px;  background: var(--accent-indigo); }
-.preloader .orbit span:nth-child(3) { top: 39px;  left: 19.5px; background: var(--accent-lime); }
-.preloader .orbit span:nth-child(4) { top: 19.5px; left: 0;    background: var(--accent-indigo); }
+.preloader .orbit span:nth-child(1) { top: 0;      left: 19.5px; background: var(--accent-lime); }
+.preloader .orbit span:nth-child(2) { top: 19.5px; left: 39px;   background: var(--accent-indigo); }
+.preloader .orbit span:nth-child(3) { top: 39px;   left: 19.5px; background: var(--accent-lime); }
+.preloader .orbit span:nth-child(4) { top: 19.5px; left: 0;      background: var(--accent-indigo); }
 @keyframes orbit-spin {
     to { transform: rotate(360deg); }
 }
@@ -961,12 +940,18 @@ img { max-width: 100%; display: block; }
     .preloader .orbit { animation: none; }
 }
 
-.preloader-icon {
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    border: 3px solid var(--accent-lime);
-    object-fit: cover;
-    margin-bottom: 1.25rem;
-    box-shadow: 0 0 25px rgba(163, 230, 53, 0.25);
+/* ── Project image placeholder (shown when screenshot not yet added) ── */
+.project-img-placeholder {
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(79,70,229,0.25) 0%, rgba(163,230,53,0.15) 100%);
+    border: 1px dashed var(--border-color);
+    color: var(--text-secondary);
+    font-size: 2.5rem;
+    letter-spacing: 0.02em;
 }

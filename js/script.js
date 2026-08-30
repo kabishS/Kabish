@@ -173,7 +173,7 @@ document.addEventListener("keydown", function (e) {
 
 /* ── Certificate Carousel ── */
 let certIdx      = 0;
-const certTotal  = 3;
+const certTotal  = 4;
 const certDelay  = 4000;
 let certElapsed  = 0;
 let certLast     = null;
